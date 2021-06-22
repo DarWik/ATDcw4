@@ -1,0 +1,6 @@
+MATCH a = (source:town {name: "Darjeeling"})-[t*]->(target:peak {name: "Sandakphu"})
+UNWIND t as relacja
+WITH a, COLLECT(relacja.distance) AS distances
+WITH a, reduce(acc = 0, d in distances | acc + d) as distance
+RETURN a, distance
+ORDER BY distance ASC

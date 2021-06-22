@@ -1,0 +1,4 @@
+MATCH (air:Airport)<-[:ORIGIN]-(fl:Flight)
+WITH air, count(fl) as lots
+RETURN air, lots
+ORDER BY lots ASC
